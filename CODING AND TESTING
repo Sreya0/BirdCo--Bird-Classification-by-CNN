@@ -1,0 +1,236 @@
+1.System Training :
+
+import numpy as
+np import pandas
+as pd
+from keras.preprocessing.image import ImageDataGenerator, load_img from
+keras.utils import to_categorical
+import matplotlib.pyplot as
+plt import random
+FAST_RUN=False
+IMAGE_WIDTH=128
+IMAGE_HEIGHT=128
+IMAGE_SIZE=(IMAGE_WIDTH, IMAGE_HEIGHT)
+IMAGE_CHANNELS=3 # RGB color
+from keras.models import Sequential
+from keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten,
+Dense, Activation, BatchNormalization
+model = Sequential()
+model.add(Conv2D(32, (3, 3),
+activation='relu',
+input_shape=(IMAGE_WIDTH,
+IMAGE_HEIGHT,
+IMAGE_CHANNELS)))
+model.add(BatchNormalization()) model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25)) model.add(Conv2D(64, (3,
+3), activation='relu'))
+model.add(BatchNormalization())
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+model.add(Conv2D(128, (3, 3), activation='relu'))
+model.add(BatchNormalization())
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25)) model.add(Flatten())
+model.add(Dense(512, activation='relu'))
+model.add(BatchNormalization())
+model.add(Dropout(0.5))
+model.add(Dense(200,
+activation='softmax'))
+model.compile(loss='categorical_c
+rossentropy', optimizer='rmsprop',
+metrics=['accuracy'])
+from keras.callbacks import EarlyStopping, ReduceLROnPlateau
+earlystop = EarlyStopping(patience=10)
+learning_rate_reduction = ReduceLROnPlateau(monitor='val_acc',
+patience=2,
+verbose=1,
+factor=0.5, min_lr=0.00001)
+callbacks = [earlystop, learning_rate_reduction] train_datagen =
+ImageDataGenerator( rotation_range=15,
+rescale=1./255,
+shear_range=0.1,
+zoom_range=0.2,
+horizontal_flip=True,
+width_shift_range=0.1,
+height_shift_range=0.1)
+test_datagen = ImageDataGenerator(rescale=1./255)
+x_train=train_datagen.flow_from_directory(r'C:\Users\user\Desktop\datas
+et\traindata',target_size = (128, 128), batch_size = 32, class_mode = 'categorical')
+x_test=test_datagen.flow_from_directory(r'C:\Users\user\Desktop\dataset\t
+estdata', target_size = (128, 128),
+batch_size = 32,
+class_mode = 'categorical')
+print(x_train.class_indices)
+model.fit_generator(x_train,
+steps_per_epoch =130 ,
+epochs = 15, validation_data = x_test, validation_steps =
+20,callbacks=callbacks) model.save("mybird.h5")
+from keras.models import load_model
+Matplotlib.pyplot:
+Matplotlib.pyplot is a collection of command style functions that make matplotlib work like
+MATLAB. Each pyplot function makes some change to a figure: e.g., creates a figure, creates
+a plotting area in a figure, plots some lines in a plotting area, decorates the plot with labels,
+etc. In matplotlib.pylot various states are preserved across function calls, so that it keeps
+track of things like the current figure and plotting area, and the plotting functions are directed
+to the current axes (please note that "axes" here and in most places in the documentation
+refers to the axes part of a figure and not the strict mathematical term for more than one
+axis).
+Model = Sequential ():
+The sequential model is a linear stack of layers. You can create a sequential model by
+passing a list of layer instances to the constructor:
+from keras.models import Sequential
+from keras.layers import Dense,
+Activation model =
+Sequential([Dense(32,
+input_shape=(784,)),
+Activation('relu')Dense(10),
+Activation('softmax'),])
+You can also simply add layers via the .add() method:
+model = Sequential()
+model.add(Dense(32,
+input_dim=784))
+model.add(Activation('relu'))
+You can save a model built with the Functional API into a single file. You can
+later recreate the same model from this file, even if you no longer have access
+to the code that created the model.
+This file includes:
+The model's architure
+The model's weight values (which were learned during training) The
+model's training config (what you passed to compile), if any
+The optimizer and its state, if any (this enables you to restart training where you left)
+Batch Normalization ():
+One possible reason for this difficulty is the distribution of the inputs to layers deep in the
+network may change after each mini-batch when the weights are updated. This can cause
+the learning algorithm to forever chase a moving target. This change in the distribution of
+inputs to layers in the network is referred to the technical name “internal covariate shift.”
+Batch normalization is a technique for training very deep neural networks that
+standardizes the inputs to a layer for each mini-batch. This has the effect of
+stabilizing the learning process and dramatically reducing the number of training
+epochs required to train deep networks.
+Conv2D ():
+This layer creates a convolution kernel that is convolved with the layer input to produce a
+tensor of outputs. If use_bias is True, a bias vector is created and added to the outputs.
+Finally, if activation is not None, it is applied to the outputs as well.
+ReduceLROnPlateau ():
+Reduce learning rate when a metric has stopped improving. Models often benefit
+from call num
+ning rate by a factor of
+2-10 once learning
+stagnates. This quantity
+and if no improvement is
+seen for a 'patience'
+learning rate is reduced.
+Dropout ():
+Dropout is a technique where randomly selected neurons are ignored during training. They
+are “dropped-out” randomly. This means that their contribution to the activation of
+downstream neurons is temporally removed on the forward pass and any weight updates are
+not applied to the neuron on the backward pass.
+ImageDataGenerator ():
+Data augmentation is what Kera’s’ “ImageDataGenerator” class implements. Using this type
+of data augmentation, we want to ensure that our network, when trained, sees new variations
+of our data at each and every epoch.
+1. An input batch of images is presented to the ImageDataGenerator.
+2. The ImageDataGenerator transforms each image in the batch by a series of random
+translations, rotations, etc.
+3. The randomly transformed batch is then returned to the calling function.
+2. Extraction of Images:
+from keras.models import load_model import numpy as np import cv2
+model= load_model('mybird.h5')
+model.compile(optimizer='adam',loss='categorical_crossentropy',metrics
+=[ 'accuracy'])
+from skimage.transform import resize def detect(frame):
+try:img = resize(frame,(128,128)) img=np.expand_dims(img,axis=0) if(np.max(img)>1):
+img= img/255.0
+prediction
+=model.predict(img)
+print(prediction) prediction_class=
+model.predict_classes(img)
+print(prediction_class) except
+AttributeError:
+print("Shape not
+found")
+from matplotlib.pyplot
+import *
+frame=cv2.imread(r'C:\Users\user\Desktop\dataset\testdata\002.Painted
+_B unting\Painted_Bunting_0091_15198.jpg')#path of image imshow(fram
+e) data=
+detect(frame)
+frame=cv2.imread(r'C:\Users\user\Desktop\dataset\testdata\009.Brewer
+_Bl ackbird\Brewer_Blackbird_0112_2340.jpg')#path of image
+imshow(fram e)
+data=
+detect(frame)
+frame=cv2.imread(r'C:\Users\user\Desktop\dataset\testdata\050.Eared_ Gre
+be\Eared_Grebe_0088_34067.jpg')#path of image
+imshow(fram e)
+data=
+detect(frame)
+CV2:
+OpenCV, which is an image and video processing library with bindings in C++,
+C, Python, and Java. OpenCV is used for all sorts of image and video analysis,
+like facial recognition and detection, license plate reading, photo editing,
+advanced robotic vision, optical character recognition, and a whole lot more.
+imRead ():
+cv2.imread() method loads an image from the specified file. If the image cannot
+be read (because of missing file, improper permissions, unsupported or invalid
+format) then this method returns an empty matrix.
+imShow ():
+cv2.imshow() method is used to display an image in a window. The window automatically
+fits to the image size.
+3. gui.py:
+import numpy as np
+from keras.preprocessing import image
+from tkinter import *
+from PIL import ImageTk,
+Image from tkinter import
+filedialog import os
+from keras.models import load_model
+classifier =
+load_model(r'C:\Users\user\Desktop\Birds-identification- master\mybird.h5')
+classifier.compile(optimizer = 'adam', loss =
+'categorical_crossentropy', metrics = ['accuracy'])
+root = Tk()
+root.geometry("550x300+300+150 ")
+root.resizable(width=True, height=True) def
+openfn(): filename =
+filedialog.askopenfilename(title='open') return
+filename
+def
+open_img
+(): x =
+openfn()
+test_image = image.load_img(x, target_size = (128, 128))
+test_image = image.img_to_array(test_image) test_image =
+np.expand_dims(test_image, axis
+= 0) result = classifier.predict_classes(test_image)
+print(result)
+index=['002.Painted_Bunting','009.Brewer_Blackbird','050.Eared_Grebe'] label = Label(
+root, text="Prediction : "+index[result[0]])
+label.pack()
+img = Image.open(x)
+img = img.resize((250, 250), Image.ANTIALIAS) img = ImageTk.PhotoImage(img)
+panel = Label(root, image=img)
+panel.image = img panel.pack()
+btn = Button(root, text='open image', command=open_img).pack() root.mainloop()
+tKinter:
+The tkinter package (“Tk interface”) is the standard Python interface to the Tk GUI
+toolkit. Both Tk and tkinter are available on most Unix platforms, as well as on Windows
+systems. (Tk itself is not part of Python; it is maintained at Active State.)
+Running python -m tkinter from the command line should open a window demonstrating a
+simple Tk interface, letting you know that tkinter is properly installed on your system, and
+also showing what version of Tcl/Tk is installed, so you can read the Tcl/Tk documentation
+specific to that version.
+Label ():
+The tkinter label widgets can be used to show text or an image to the screen. A label can
+only display text in a single font. The text can span multiple lines. We can put any text in a
+label and we can have multiple labels in a window (just like any widget can be placed
+multiple times in a window).
+Button ():
+The Button widget is used to add buttons in a Python application. These buttons
+can display text or images that convey the purpose of the buttons. You can attach
+a function or a method to a button which is called automatically when you click
+the button.
+mainloop ():
+There is a method known by the name mainloop () is used when your application
+is ready to run. mainloop () is an infinite loop used to run the application, wait for
+an event to occur and process the event as long as the window is not closed
