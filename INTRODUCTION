@@ -1,0 +1,33 @@
+Bird behavior and populace patterns have become a significant issue nowadays. Birds help
+us to recognize different life forms on the earth effectively as they react rapidly to ecological
+changes. Be that as it may, assembling and gathering data about bird species requires
+immense human exertion just as it turns into an extremely costly technique. In such a case, a
+solid framework that will give enormous scale preparation of data about birds and will fill in
+as a significant apparatus for scientists, legislative offices, and so forth is required. In this
+way, bird species distinguishing proof assumes a significant job in recognizing that a specific
+picture of birds has a place with which categories.
+
+Bird species identification means predicting the bird species belongs to which category by using an image.
+The recognition of bird species can be possible through a picture, audio or video. An audio
+processing method makes it conceivable to recognize by catching the sound sign of different
+birds. Be that as it may, because of the blended sounds in condition, for example, creepy
+crawlies, objects from the real world, and so forth handling of such data turns out to be
+progressively convoluted. Normally, people discover images more effectively than sounds or
+recordings. So, an approach to classify birds using an image over audio or video is preferred.
+Bird species identification is a challenging task to humans as well as to computational
+procedures that carry out such a task in an automated fashion.
+
+As image-based classification systems are improving the task of classifying, objects are
+moving into datasets with far more categories such as Caltech-UCSD. Recent work has seen
+much success in this area. Caltech UCSD Birds 200(CUB-200-2011) is a wellknown dataset
+for bird images with photos of 200 categories. The dataset contains birds that are mostly
+found in Northern America. Caltech-UCSD Birds 200 consists of 11,788 images and
+annotations like 15 Part Locations, 312 Binary Attributes, 1 Bounding Box.
+In this project, rather than recognizing an oversized number of disparate categories, the
+matter of recognizing an oversized number of classes within one category is investigated –
+that of birds. Classifying birds pose an additional challenge over categories, as a result of the
+massive similarity between classes. 
+
+Additionally, birds are non-rigid objects which will deform in many ways and consequently there's also an oversized variation within classes.
+Previous work on bird classification has taken care of a little number of classes, or through
+voice.
