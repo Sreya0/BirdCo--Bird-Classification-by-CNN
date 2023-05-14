@@ -1,0 +1,12 @@
+In our world, there are above 9000 bird species. Some bird species are being found rarely and if found
+also prediction becomes very difficult. In order to overcome this problem, we have an effective and
+simple way to recognize these bird species based on their features. Also, the human ability to recognize
+the birds through the images is more understandable than audio recognition. So, we have used
+Convolutional Neural Networks (CNN). CNN’s are the strong assemblage of machine learning which
+have proven efficient in image processing. In this paper, a CNN system classifying bird species is
+presented and uses the Caltech-UCSD Birds 200 [CUB-200-2011] dataset for training as well as testing
+purposes. By establishing this dataset and using the algorithm of similarity comparison, this system is
+proved to achieve good results in practice. By using this method, everyone can easily identify the name
+of the particular bird which they want to know
+
+Keywords: Bird species, Machine Learning, Convolutional Neural Networks
