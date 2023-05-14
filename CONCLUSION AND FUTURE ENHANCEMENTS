@@ -1,0 +1,20 @@
+Conclusion:
+The main idea behind developing the identification website is to build awareness
+regarding bird-watching, bird and their identification, especially birds found in
+India. It also caters to the need of simplifying the bird identification process and
+thus making bird-watching easier. The technology used in the experimental setup
+is Convolutional Neural Networks (CNN). It uses feature extraction for image
+recognition. The method used is good enough to extract features and classify
+images.
+The main purpose of the project is to identify the bird species from an image given as
+input by the user. We used CNN because it is suitable for implementing advanced
+algorithms and gives good numerical precision accuracy. It is also general-purpose and
+scientific. We achieved an accuracy of 85%-90%. We believe this project extends a great
+deal of scope as the purpose meets. In wildlife research and monitoring, this concept can
+be implemented in-camera traps to maintain the record of wildlife movement in specific
+habitat and behaviour of any species.
+Enhancements :
+1) Create an android/iOS app instead of website which will be more convenient to user.
+2) System can be implemented using cloud which can store large amount of data for
+comparison and provide high computing power for processing (in case of Neural
+Networks).
