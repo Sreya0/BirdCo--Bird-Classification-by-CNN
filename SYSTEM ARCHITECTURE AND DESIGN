@@ -1,16 +1,9 @@
-A Convolutional Neural Network (ConvNet/CNN) is a Deep Learning algorithm
-which can take in an input image, assign importance (learnable weights and
-biases) to various aspects/objects in the image and be able to differentiate one
-from the other. The pre- processing required in a ConvNet is much lower as
-compared to other classification algorithms. While in primitive methods filters are
-hand-engineered, with enough training, ConvNets have the ability to learn these
-filters/characteristics.
+In summary, a Convolutional Neural Network (ConvNet/CNN) is a formidable deep learning algorithm that excels in processing image data. Unlike traditional methods where filters are manually engineered, ConvNets autonomously learn these filters, assigning importance to various elements within an image, enabling discrimination between them. 
 
-A ConvNet is able to successfully capture the Spatial and Temporal dependencies
-in an image through the application of relevant filters. The architecture performs a
-better fitting to the image dataset due to the reduction in the number of parameters
-involved and reusability of weights. In other words, the network can be trained to
-understand the sophistication of the image better.
+These networks adeptly capture both spatial and temporal dependencies within images through the application of specialized filters. Their architecture offers enhanced performance by reducing parameter count and facilitating weight reusability. This capability allows ConvNets to comprehend intricate image details and nuances.
 
-The role of the ConvNet is to reduce the images into a form which is easier to
-process, without losing features which are critical for getting a good prediction
+In the context of bird identification, our CNN model featured a series of convolutional layers, including an input layer, two fully connected (FC) layers, and a final output softmax layer. Each convolutional layer was composed of essential elements like convolution, batch normalization (BN), Rectified Linear Unit (ReLU) activation, and pooling layers.
+
+The construction of an optimized CNN model necessitates careful tuning of parameters and hyperparameters prior to training. This includes determining the number of convolutional layers, the kernel sizes for each layer, and dropout regularization probabilities for retaining nodes within the network.
+
+In essence, ConvNets are indispensable tools in the field of computer vision and image analysis, enabling the efficient processing of complex image data while preserving crucial features for accurate predictions.
